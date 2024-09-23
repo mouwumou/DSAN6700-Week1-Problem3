@@ -31,6 +31,9 @@ jobs:
     - name: Build documentation
       run: poetry run make html --directory docs/
 
+    - name: Add file to docs folder aviod Jekyll
+      run: touch docs/build/html/.nojekyll
+
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@v4.4.3
       with:
