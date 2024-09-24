@@ -1,5 +1,5 @@
 from argparse import ArgumentParser
-from mailer import send_email
+from my_email.mailer import send_email
 
 
 def setup_args(parser):
