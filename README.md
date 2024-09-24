@@ -14,10 +14,17 @@ This project provides a simple email alerting system using Python's SMTP librari
 ### Prerequisites
 Python >=3.9
 
+
 ### How to Run
 1. **Clone the repository**: Ensure that you have the project directory (problem3/), which contains alert.py and mailer.py.
 
-2. **Start the local SMTP debugging server**: Open a terminal in VS Code and run the following command to start the SMTP debugging server. This server simulates email sending by printing messages to the console.
+2. **Install the required libraries**: Open a terminal in the project directory and run the following command to install the required libraries (smtplib and email):
+
+```{bash}
+poetry install
+```
+
+3. **Start the local SMTP debugging server**: Open a terminal in VS Code and run the following command to start the SMTP debugging server. This server simulates email sending by printing messages to the console.
 
 ```{bash}
 python -m smtpd -n -c DebuggingServer localhost:1025
@@ -25,8 +32,13 @@ python -m smtpd -n -c DebuggingServer localhost:1025
 
 Keep this terminal open as long as you are running the `alert.py` script.
 
-3. **Send an email using alert.py**: Open a second terminal and run the following command to send an email alert:
+4. **Send an email using alert.py**: Open a second terminal and run the following command to send an email alert:
+You can use the package as module by running the following command:
+```{bash}
+python -m my_email.alert -s sender@example.com -r recipient@example.com -j "Test Alert" -b "This is a test email."
+```
 
+Or you can run the script directly by running the following command:
 ```{bash}
 python alert.py -s sender@example.com -r recipient@example.com -j "Test Alert" -b "This is a test email."
 ```
@@ -39,7 +51,7 @@ You should see the email message printed in the first terminal running the SMTP 
 You can customize the email details like sender, recipient, subject, and body directly via command-line arguments.
 
 ```{bash}
-python alert.py -s "admin@company.com" -r "user@company.com" -j "Alert Notification" -b "Build failed in stage 2."
+python -m my_email.alert -s "admin@company.com" -r "user@company.com" -j "Alert Notification" -b "Build failed in stage 2."
 ```
 This allows you to easily integrate email alerts into your workflow for various notifications, such as:
 
